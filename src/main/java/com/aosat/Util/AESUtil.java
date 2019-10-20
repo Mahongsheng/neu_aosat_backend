@@ -37,6 +37,11 @@ public class AESUtil {
     /**
      * ？我也不知道为啥非要用BASE64编码处理，再分出来一个方法写生成key
      * 但既然他这么写了我就先这么用着吧
+     *
+     * 2019.10.20
+     * 我今天好像有点明白了，这样分开写方法就可以使用已生成的固定字符串来生成密钥
+     * （我蒙的，别信
+     *
      * 将使用 Base64 编码后的字符串类型的 secretKey 转为 SecretKey
      *
      * @return SecretKey
@@ -77,7 +82,11 @@ public class AESUtil {
         return cipher.doFinal(content);
     }
 
-    // 生成随机盐值
+    /**
+     * 生成随机盐值
+     *
+     * @return 盐值
+     */
     public static String generateSalt() {
         Random ranGen = new SecureRandom();
         byte[] aesKey = new byte[8];

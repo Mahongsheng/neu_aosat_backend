@@ -63,7 +63,7 @@ public class LoginService implements LoginInterface {
         RedisSerializer redisSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(redisSerializer);
         redisTemplate.setValueSerializer(redisSerializer);
-        //从redis缓存中获取列表
+        //从redis缓存中获取
         UserRedis userRedis = (UserRedis) redisTemplate.opsForValue().get(loginDTO.getUserName());
         //未读取则从数据库中读取并载入缓存
         if (null == userRedis) {
